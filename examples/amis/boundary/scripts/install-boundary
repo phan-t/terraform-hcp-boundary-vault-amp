@@ -152,6 +152,7 @@ function create_boundary_install_paths {
   sudo mkdir -p "$path"
   sudo mkdir -p "$path/bin"
   sudo mkdir -p "$path/config"
+  sudo mkdir =p "$path/auth-storage"
 
   log_info "Changing ownership of $path to $username"
   sudo chown -R "$username:$username" "$path"
