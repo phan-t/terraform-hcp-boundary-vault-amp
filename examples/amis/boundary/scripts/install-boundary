@@ -299,3 +299,5 @@ function install {
 #    exit 1;
 #  fi
 }
+
+install "$@"
