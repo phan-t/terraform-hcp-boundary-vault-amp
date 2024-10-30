@@ -117,7 +117,8 @@ function install_dependencies {
   if has_apt_get; then
     sudo apt-get update -y
     sudo apt-get install -y curl unzip
-    sudo snap install aws-cli jq
+    sudo snap install aws-cli --classic
+    sudo snap install jq
   elif has_yum; then
     sudo yum update -y
     sudo yum install -y aws curl unzip jq
