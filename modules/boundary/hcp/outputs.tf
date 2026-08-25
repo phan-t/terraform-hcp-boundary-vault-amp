@@ -1,4 +1,3 @@
-output "cluster_public_fqdn" {
-  description = "hcp boundary cluster public fqdn"
+output "public_endpoint_fqdn" {
   value       = hcp_boundary_cluster.this.cluster_url
 }

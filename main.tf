@@ -19,11 +19,37 @@ module "boundary-hcp" {
 ]
 }
 
+module "vault-hcp" {
+  source = "./modules/vault"
+
+  deployment_id = local.deployment_id
+  hvn_id        = module.hcp-hvn.id
+
+  depends_on = [ 
+    module.infra-aws 
+]
+}
+
+// hashicorp cloud platform (hcp) infrastructure
+
+module "hcp-hvn" {
+  source = "./modules/infra/hcp"
+
+  region                     = var.aws_region
+  deployment_id              = local.deployment_id
+  cidr                       = var.hcp_hvn_cidr
+  aws_vpc_cidr               = var.aws_vpc_cidr
+  aws_tgw_id                 = module.infra-aws.tgw_id
+  aws_ram_resource_share_arn = module.infra-aws.ram_resource_share_arn
+}
+
 // amazon web services (aws) infrastructure
 
 module "infra-aws" {
   source  = "./modules/infra/aws"
   
-  deployment_id = local.deployment_id
-  vpc_cidr      = var.aws_vpc_cidr
+  deployment_id               = local.deployment_id
+  vpc_cidr                    = var.aws_vpc_cidr
+  hcp_hvn_provider_account_id = module.hcp-hvn.provider_account_id
+  hcp_hvn_cidr                = var.hcp_hvn_cidr
 }

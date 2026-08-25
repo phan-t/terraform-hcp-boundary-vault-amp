@@ -1,4 +1,3 @@
-output "cluster_public_fqdn" {
-  description = "hcp boundary cluster public fqdn"
-  value       = module.boundary-hcp.cluster_public_fqdn
+output "public_endpoint_fqdn" {
+  value = module.boundary-hcp.public_endpoint_fqdn
 }

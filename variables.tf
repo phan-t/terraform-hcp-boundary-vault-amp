@@ -20,6 +20,12 @@ variable "hcp_client_secret" {
   default     = ""
 }
 
+variable "hcp_hvn_cidr" {
+  description = "hcp hvn cidr"
+  type        = string
+  default     = "172.25.16.0/20"
+}
+
 // amazon web services (aws) variables
 
 variable "aws_region" {
